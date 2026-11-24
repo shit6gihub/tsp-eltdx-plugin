@@ -56,7 +56,7 @@ zip -r ../tsp_eltdx.zip . -x '__pycache__/*' '*.pyc' 'cache/*' -x '.git/*'
 ### 3. 安装进 TSP
 
 ```bash
-P=/vol4/1000/ydyp/tick-stock-panel          # 按实际路径改
+P=/path/to/tick-stock-panel          # 按实际路径改
 PW=$(grep '^AUTH_PASSWORD' "$P/.env" | cut -d= -f2- | tr -d "\"'")
 
 # 登录拿 cookie
