@@ -1077,7 +1077,14 @@ class EltdxProvider:
         asks = getattr(record, "sell_levels", ()) or ()
         bid_prices = [_to_float(getattr(lv, "price", None)) for lv in bids]
         ask_prices = [_to_float(getattr(lv, "price", None)) for lv in asks]
-        if not any(p for p in bid_prices) or not any(p for p in ask_prices):
+        # v1.0.14 修复: 不能要求买卖两侧都非零。
+        # 涨停时卖盘为空(卖价全 0)、跌停时买盘为空 —— 这恰恰是 TSP 判定
+        # 「涨停真封/跌停真封」的依据(见 backend depth_service._seal_locked:
+        #   sealed_up = (ask1 == 0); sealed_down = (bid1 == 0)).
+        # 而 TSP 的盘后定版只拉涨跌停股, 旧过滤会把它们全部丢弃 → depth.batch 返回空
+        # → 当天 depth5 分区不落盘(2026-11-24 实测: 95 只涨停 + 9 只跌停全被过滤)。
+        # 因此只丢弃「两侧都没有任何报价」的记录(停牌/无数据)。
+        if not any(bid_prices) and not any(ask_prices):
             return None
         return {
             "bid_prices": [p or 0.0 for p in bid_prices],
