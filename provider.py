@@ -310,6 +310,11 @@ def _snapshot_ms(raw, fallback_ms: int) -> int:
     return int(stamp.replace(tzinfo=_BEIJING).timestamp() * 1000)
 
 
+def _now_dt() -> datetime:
+    """当前北京时间 datetime（用于「是否已到午后」这类本地时刻判断）。"""
+    return datetime.now(_BEIJING)
+
+
 def _now_ms() -> int:
     return int(datetime.now(_BEIJING).timestamp() * 1000)
 
@@ -800,6 +805,7 @@ class EltdxProvider:
                     rows: list[dict] = []
                     foreign = 0   # 跨日行(前一交易日尾巴)
                     unparsed = 0  # time 字段不是 datetime
+                    relabeled = 0 # 13:00 错标纠正为 11:30 的根数
                     for b in raw_bars:
                         t = getattr(b, "time", None)
                         if t is None:
@@ -817,6 +823,14 @@ class EltdxProvider:
                         if stamp.date() != day:
                             foreign += 1
                             continue
+                        # v1.0.11 修复: TDX 会把「上午最后一根(11:29~11:30)」错标成 13:00
+                        # (实测 11-23 全市场 5584 只里有 11 只是这种标签; 而盘中同步时
+                        # 全部标的都会这样)。后果: 分时图在下午开盘前就冒出一个 13:00 点,
+                        # 且按 11:30 做跨标的查询会漏掉几乎全部标的。
+                        # 判断无歧义: 当前时间还没到 13:00, 标签却是 13:00 → 它是上午收盘那根。
+                        if (stamp.hour, stamp.minute) == (13, 0) and _now_dt().time() < _clock(13, 0):
+                            stamp = stamp.replace(hour=11, minute=30)
+                            relabeled += 1
                         vol = float(getattr(b, "volume_lots", 0) or 0)
                         amt = _to_float(getattr(b, "amount", None)) or 0.0
                         rows.append({
@@ -829,10 +843,10 @@ class EltdxProvider:
                             "volume": vol,
                             "amount": amt,
                         })
-                    if foreign or unparsed:
+                    if foreign or unparsed or relabeled:
                         logger.info(
-                            "eltdx _minute_rows %s %s: 过滤跨日 %d 根 / 时间字段不可解析 %d 根, 保留当日 %d 根",
-                            std, day, foreign, unparsed, len(rows),
+                            "eltdx _minute_rows %s %s: 过滤跨日 %d 根 / 时间字段不可解析 %d 根 / 13:00→11:30 纠正 %d 根, 保留当日 %d 根",
+                            std, day, foreign, unparsed, relabeled, len(rows),
                         )
                     if rows:
                         logger.info("eltdx _minute_rows %s %s: got %d bars from bars.get(1m)", std, day, len(rows))
