@@ -1,0 +1,136 @@
+TSP-ELTDX Non-Commercial Use License
+TSP-ELTDX 非商业使用许可
+
+Version 1.0
+
+Copyright (c) 2026 shit6gihub <zhaojianqiang40@gmail.com>
+
+================================================================================
+English
+================================================================================
+
+1. SCOPE
+
+   This license applies to the original source code of the TSP-ELTDX data source
+   plugin ("the Work"), namely every file in this repository EXCEPT the
+   third-party components listed in the accompanying NOTICE file.
+
+   The Work additionally bundles a binary distribution of the "eltdx" library,
+   stored as base64 text under assets/. That component is NOT covered by this
+   license; it remains under its own upstream license, which is strictly
+   non-commercial and whose terms prevail where they are more restrictive.
+
+2. GRANT
+
+   You are granted a worldwide, royalty-free, non-exclusive permission to read,
+   use, copy, modify and distribute the Work, subject to the conditions below.
+
+3. CONDITIONS
+
+   3.1 Non-commercial only.
+       You may not use the Work, its source code, its derived works, or any data
+       obtained through it for any commercial purpose. This includes, without
+       limitation: paid services, production services, resale, redistribution for
+       profit, market-data vending, and automated trading services operated for
+       the benefit of any business.
+
+   3.2 Attribution.
+       You must retain this license text, the NOTICE file, and all copyright
+       notices in any copy or derivative work, and state prominently that the
+       Work has been modified if you modify it.
+
+   3.3 No additional restrictions.
+       You may not impose legal terms or technological measures that restrict
+       others from doing anything this license permits, nor relicense the Work
+       under terms that are less restrictive with respect to commercial use.
+
+   3.4 Third-party compliance.
+       Your use must comply with the licenses of all bundled or required
+       third-party components (see NOTICE), with the terms of any market-data
+       provider you access, and with applicable laws, regulations and exchange
+       rules. You are solely responsible for that compliance.
+
+4. NO WARRANTY
+
+   THE WORK IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+   IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS
+   FOR A PARTICULAR PURPOSE, DATA ACCURACY, COMPLETENESS, AVAILABILITY,
+   NON-INFRINGEMENT, OR COMPLIANCE WITH ANY LAW OR REGULATION. DATA OBTAINED
+   THROUGH THE WORK MAY BE DELAYED, INCOMPLETE OR INCORRECT AND MUST NOT BE
+   RELIED UPON AS THE SOLE BASIS FOR ANY INVESTMENT DECISION.
+
+5. LIMITATION OF LIABILITY
+
+   IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+   DAMAGES, LOSSES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+   OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE WORK, THE DATA, ANY
+   THIRD-PARTY SERVICE, OR THE USE OR OTHER DEALINGS IN THE WORK. THIS INCLUDES,
+   WITHOUT LIMITATION, TRADING LOSSES AND ANY REGULATORY OR LEGAL CONSEQUENCES OF
+   YOUR ACCESS TO THIRD-PARTY SERVERS.
+
+6. TERMINATION
+
+   Any breach of these terms terminates your rights under this license
+   automatically. Upon termination you must stop using and distributing the Work
+   and destroy all copies in your possession.
+
+================================================================================
+中文
+================================================================================
+
+1. 适用范围
+
+   本许可适用于 TSP-ELTDX 数据源插件（下称"本作品"）的原创源代码，即本仓库中
+   除 NOTICE 文件所列第三方组件之外的每一个文件。
+
+   本作品另外以 base64 文本形式（assets/ 目录）内嵌了 "eltdx" 库的二进制分发包。
+   该组件不受本许可约束，仍适用其上游许可；上游许可严格禁止商业用途，两者冲突时
+   以更严格者为准。
+
+2. 授权
+
+   在遵守下列条件的前提下，授予你全球范围、免费、非独占的许可，允许你阅读、使用、
+   复制、修改和分发本作品。
+
+3. 条件
+
+   3.1 仅限非商业用途。
+       你不得将本作品、其源代码、其衍生作品，或通过它获取的任何数据用于任何商业
+       目的。包括但不限于：付费服务、生产服务、转售、盈利性再分发、行情数据售卖、
+       以及为任何商业主体利益运行的自动化交易服务。
+
+   3.2 保留署名。
+       在任何副本或衍生作品中，你必须保留本许可全文、NOTICE 文件以及全部版权声明；
+       若你修改了本作品，须显著说明"已修改"。
+
+   3.3 不得附加额外限制。
+       你不得通过法律条款或技术手段限制他人行使本许可允许的行为，也不得将本作品
+       以对商业使用限制更宽松的条款重新许可。
+
+   3.4 遵守第三方条款。
+       你的使用必须遵守全部内嵌或必需第三方组件的许可（见 NOTICE）、你所访问的
+       任何行情数据提供方的条款，以及适用的法律法规与交易所规则。该等合规责任
+       完全由你自行承担。
+
+4. 无担保
+
+   本作品按"现状"提供，不附带任何明示或默示担保，包括但不限于对适销性、特定用途
+   适用性、数据准确性、完整性、可用性、不侵权，或符合任何法律法规的担保。通过本
+   作品获取的数据可能存在延迟、缺失或错误，不得作为任何投资决策的唯一依据。
+
+5. 责任限制
+
+   在任何情况下，作者或版权持有人均不对因本作品、相关数据、任何第三方服务，或
+   对本作品的使用或其他处理而产生的任何索赔、损害、损失或其他责任承担责任，
+   无论其基于合同、侵权或其他事由。包括但不限于交易损失，以及你访问第三方服务器
+   所引发的任何监管或法律后果。
+
+6. 终止
+
+   任何违反上述条款的行为将自动终止你依本许可获得的权利。终止后你须立即停止使用
+   与分发本作品，并销毁你持有的全部副本。
+
+================================================================================
+SPDX-License-Identifier: LicenseRef-TSP-ELTDX-NC-1.0
+License-File: LICENSE
+================================================================================

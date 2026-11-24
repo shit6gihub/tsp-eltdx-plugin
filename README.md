@@ -12,8 +12,9 @@
 [![Python](https://img.shields.io/badge/python-%E2%89%A53.11-3776AB?style=for-the-badge&logo=python&logoColor=white)]()
 [![Platform](https://img.shields.io/badge/platform-linux--x86__64-lightgrey?style=for-the-badge&logo=linux&logoColor=white)]()
 [![Host](https://img.shields.io/badge/host-TSP%20%E2%89%A50.3.24-orange?style=for-the-badge)]()
+[![License](https://img.shields.io/badge/license-Non--Commercial-red?style=for-the-badge)](LICENSE)
 
-[数据能力](#-数据能力) · [安装](#-安装) · [设计要点](#-设计要点) · [变更记录](CHANGELOG.md) · [恢复指南](RESTORE.md)
+[数据能力](#-数据能力) · [安装](#-安装) · [设计要点](#-设计要点) · [变更记录](CHANGELOG.md) · [恢复指南](RESTORE.md) · [许可](LICENSE)
 
 </div>
 
@@ -100,6 +101,22 @@ zip -r ../tsp_eltdx.zip . -x '__pycache__/*' '*.pyc' 'cache/*' '.git/*'
 └── RESTORE.md           # 从零恢复指南 + 踩坑清单
 ```
 
-## 📄 说明
+## 📄 许可
 
-内部使用项目，未附带开源许可证。上游 `eltdx` 与 `tick-stock-panel` 各自遵循其原有许可。
+本项目采用 **[TSP-ELTDX 非商业使用许可](LICENSE)**（`LicenseRef-TSP-ELTDX-NC-1.0`）：
+允许个人学习、研究与非商业自用，允许阅读/使用/复制/修改/非盈利分发；
+**禁止任何商业用途**（含付费服务、生产服务、转售、盈利性再分发、行情数据售卖、自动化交易服务）。
+
+之所以不是 MIT，是因为本插件**内嵌了 `eltdx` 的二进制**，而 eltdx 采用的是
+[ELTDX Non-Commercial Learning and Data Research License](https://github.com/electkismet/eltdx/blob/main/LICENSE)
+——严格非商业，且**不属于 OSI 认可的开源许可**。两者叠加，取更严格者。
+
+第三方组件与各自的许可见 **[NOTICE](NOTICE)**：
+
+| 组件 | 关系 | 许可 |
+| --- | --- | --- |
+| [eltdx](https://github.com/electkismet/eltdx) | 内嵌二进制（base64） | ELTDX 非商业许可 |
+| [tick-stock-panel](https://github.com/shy3130/tick-stock-panel) | 宿主，不含其代码 | MIT |
+| 通达信行情数据 | 运行时外部拉取 | 数据提供方条款 |
+
+> 行情数据可能存在延迟、缺失或错误，**不得作为投资决策的唯一依据**。
