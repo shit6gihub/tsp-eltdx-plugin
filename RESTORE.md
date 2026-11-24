@@ -30,11 +30,17 @@
 
 ### 1. 拿到完整文件
 
-仓库里 `assets/eltdx-3.3.5.wheel.b64.txt` **是生成物，不在版本库中**，需先生成：
-
 ```bash
 git clone <本仓库> tsp_eltdx && cd tsp_eltdx
-python3 tools/make_assets.py        # 从 PyPI 下载 wheel、校验 sha256、生成 base64
+```
+
+**文件已全部入库**，包括 `assets/eltdx-3.3.5.wheel.b64.txt`（3.4 MB 内嵌 wheel），
+克隆下来即可直接打包，不需要联网。
+
+如需核验或重建该 base64（例如 eltdx 升级后）：
+
+```bash
+python3 tools/make_assets.py        # 从 PyPI 下载 wheel、校验 sha256、重新生成
 ```
 
 ### 2. 打包成 TSP 可安装的 ZIP
