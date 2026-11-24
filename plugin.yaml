@@ -1,0 +1,34 @@
+name: tsp_eltdx
+display_name: eltdx 原生行情 (通达信 7709)
+version: 1.0.10
+plugin_api_version: 1
+runtime: python
+entry: provider:EltdxProvider
+# v1.0.3 补充的兼容性约束(对照 TSP 外部数据源插件规范)
+requires_app: '>=0.3.24'
+requires_python: '>=3.11'
+platforms: [linux-x86_64]
+check: provider:availability
+datasets:
+  - daily
+  - adj_factor
+  - minute
+  - full_minute
+  - realtime
+  - depth5
+  - financial
+description: 通过 eltdx 原生库 (通达信 7709 TCP 协议) 直连行情服务器, 提供日K/除权因子/分钟K/全量分钟/实时快照/五档盘口/财务五表。原生 wheel 以 base64 文本随包分发, 首次加载时校验 sha256 并解压到 data 卷, 不需要重建镜像, 也不需要预装 eltdx。
+author: tsp-eltdx
+homepage: https://github.com/eltdx/eltdx
+homepage_label: eltdx 上游仓库
+billing: none
+billing_note: 数据来自通达信公开行情服务器, 无需账号或付费; 请遵守数据提供方条款并控制请求频率。
+install_hint: 安装后到「数据源」页把需要的能力切到 eltdx 原生; 首次调用会解码内嵌 wheel 并解压约 6.2 MB 到 data/plugins/_vendor/eltdx-3.3.5, 耗时约 0.1~1 秒; 之后直接命中 .ready 标记, 不再解压。
+usage_notes:
+  - volume 单位为「手」, amount 单位为「元」; 日K 为不复权原始价。
+  - 分钟时间戳是北京墙钟 naive (不带时区), 与面板分钟线口径一致。
+  - 复权由 adj_factor + indicators.pipeline 处理, 本插件只提供因子, 不预混算价格。
+  - 分钟K 等强一致取数失败会抛 ProviderRequestError, 不跨源降级。
+  - 五档盘口按 100 只一批请求 0x0547, 快照接口只有一档, 五档必须单独取。
+  - 财务五表走 TQLEX 7615 长连接池, 结果在插件目录 cache/f10 下缓存 12 小时。
+  - 实时快照的 name 取自通达信代码表 (进程内缓存一次), turnover_rate 为小数制 = 成交量(手)*100/流通股本, 分母缺失留 null。
