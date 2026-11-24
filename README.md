@@ -7,7 +7,7 @@
 一个进程内外部源插件：不重建镜像、不预装原生库、不依赖付费 API，
 把日 K / 除权 / 分钟 / 全量分钟 / 实时 / 五档 / 财务七类数据接进 TSP。
 
-[![Version](https://img.shields.io/badge/version-1.0.11-blue?style=for-the-badge)](https://github.com/shit6gihub/tsp-eltdx-plugin/releases)
+[![Version](https://img.shields.io/badge/version-1.0.13-blue?style=for-the-badge)](https://github.com/shit6gihub/tsp-eltdx-plugin/releases)
 [![Plugin API](https://img.shields.io/badge/plugin__api-1-2ea44f?style=for-the-badge)]()
 [![Python](https://img.shields.io/badge/python-%E2%89%A53.11-3776AB?style=for-the-badge&logo=python&logoColor=white)]()
 [![Platform](https://img.shields.io/badge/platform-linux--x86__64-lightgrey?style=for-the-badge&logo=linux&logoColor=white)]()
